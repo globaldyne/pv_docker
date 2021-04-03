@@ -7,6 +7,8 @@ FROM centos:centos8
 #FROM --platform=linux/x86_64 centos:centos8
 MAINTAINER JB <john@globaldyne.co.uk>
 
+ARG git_repo=master
+
 RUN dnf -y install epel-release
 RUN dnf -y install https://rpms.remirepo.net/enterprise/remi-release-8.rpm
 
@@ -53,8 +55,8 @@ RUN sed -i \
 ENV LANG en_GB.UTF-8
 
 
-ADD https://api.github.com/repos/globaldyne/parfumvault/git/refs/heads/master version.json
-RUN git clone -b master https://github.com/globaldyne/parfumvault.git /var/www/html
+ADD https://api.github.com/repos/globaldyne/parfumvault/git/refs/heads/${git_repo} version.json
+RUN git clone -b ${git_repo} https://github.com/globaldyne/parfumvault.git /var/www/html
 
 ADD start.sh /start.sh
 ADD mysql-first-time.sql /tmp/mysql-first-time.sql
