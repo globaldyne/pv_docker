@@ -51,6 +51,9 @@ RUN git clone -b ${git_repo} https://github.com/globaldyne/parfumvault.git /var/
 ADD start.sh /start.sh
 ADD mysql-first-time.sql /tmp/mysql-first-time.sql
 
+RUN chown 10001 -R /var/www/html
+USER 10001
+
 EXPOSE 8000
 VOLUME ["/var/lib/mysql", "/var/www/html/uploads", "/config"]
 CMD ["/bin/bash", "/start.sh"]
