@@ -4,7 +4,7 @@ MYSQL_DB="pvault"
 MYSQL_USER="pvault"
 MYSQL_PASS="pvault"
 DATADIR="/var/lib/mysql"
-WEBDIR="/var/www/html/uploads"
+WEBDIR="/var/www/html"
 
 if [ -d "$WEBDIR/helpers" ]; then
 	rm -rf "$WEBDIR/helpers"
@@ -25,8 +25,6 @@ if [ ! -d "$DATADIR/mysql" ]; then
 fi
 
 echo "Setting enviroment"
-touch /var/www/html/.DOCKER
-mkdir -p /run/php-fpm
 if [ ! -f "/config/config.php" ]; then
 	cp /var/www/html/inc/config.example.php /config/config.php
 	ln -s /config/config.php /var/www/html/inc/config.php
@@ -36,16 +34,12 @@ fi
 
 echo "Setting permissions"
 chown -R mysql:mysql /var/lib/mysql
-chown -R apache:apache /var/www/html
-chown -R apache:apache /config
 
 echo "Starting DB"
 /usr/bin/mysqld_safe &
 
-echo "Starting web server"
-/usr/sbin/php-fpm
-/usr/sbin/httpd -k start
 echo "----------------------------------"
 echo "READY - Perfumer's Vault Ver $(cat /var/www/html/VERSION.md)"
-touch /var/log/php-fpm/www-error.log
-tail -f /var/log/php-fpm/www-error.log
+echo "----------------------------------"
+echo "Starting web server"
+/usr/bin/php -S 0.0.0.0:8000 -t /var/www/html/
