@@ -3,7 +3,7 @@
 # JB's Vault
 # 
 # =============================================================================
-FROM centos:centos8
+FROM quay.io/centos/centos:centos8
 #FROM --platform=linux/x86_64 centos:centos8
 MAINTAINER JB <john@globaldyne.co.uk>
 
