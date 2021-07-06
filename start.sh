@@ -4,11 +4,6 @@ MYSQL_DB="pvault"
 MYSQL_USER="pvault"
 MYSQL_PASS="pvault"
 DATADIR="/var/lib/mysql"
-WEBDIR="/var/www/html/uploads"
-
-if [ -d "$WEBDIR/helpers" ]; then
-	rm -rf "$WEBDIR/helpers"
-fi
 
 if [ ! -d "/config" ]; then
 	mkdir -p /config
