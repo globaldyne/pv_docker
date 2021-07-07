@@ -4,7 +4,6 @@
 # 
 # =============================================================================
 FROM quay.io/centos/centos:centos8
-#FROM --platform=linux/x86_64 centos:centos8
 MAINTAINER JB <john@globaldyne.co.uk>
 
 ARG git_repo=master
@@ -21,13 +20,10 @@ RUN dnf --setopt=tsflags=nodocs -y install \
 	php-xml \
 	php-mysql \
 	php-gd \
-	mariadb-server \
 	php-mbstring \
 	git \
 	python3-pip \
 	&& dnf clean all
-
-RUN  dnf -y update 
 
 RUN python3 -m pip install --upgrade pip \
 	&& python3 -m pip install --no-warn-script-location --upgrade brother_ql
@@ -44,15 +40,12 @@ RUN sed -i \
 
 ENV LANG en_GB.UTF-8
 
-
 ADD https://api.github.com/repos/globaldyne/parfumvault/git/refs/heads/${git_repo} version.json
 RUN git clone -b ${git_repo} https://github.com/globaldyne/parfumvault.git /var/www/html
 
 ADD start.sh /start.sh
-ADD mysql-first-time.sql /tmp/mysql-first-time.sql
 
 USER 10001
-
 EXPOSE 8000
-VOLUME ["/var/lib/mysql", "/var/www/html/uploads", "/config"]
+VOLUME ["/var/www/html/uploads", "/config"]
 CMD ["/bin/bash", "/start.sh"]
