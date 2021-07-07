@@ -20,8 +20,9 @@ if [ ! -d "$DATADIR/mysql" ]; then
 fi
 
 echo "Setting enviroment"
-touch /var/www/html/.DOCKER
+touch /config/.DOCKER
 mkdir -p /run/php-fpm
+
 if [ ! -f "/config/config.php" ]; then
 	cp /var/www/html/inc/config.example.php /config/config.php
 	ln -s /config/config.php /var/www/html/inc/config.php

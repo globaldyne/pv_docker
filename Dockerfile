@@ -28,8 +28,6 @@ RUN dnf --setopt=tsflags=nodocs -y install \
 	python3-pip \
 	&& dnf clean all
 
-RUN  dnf -y update 
-
 RUN python3 -m pip install --upgrade pip \
 	&& python3 -m pip install --no-warn-script-location --upgrade brother_ql
 
