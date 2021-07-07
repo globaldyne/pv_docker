@@ -23,6 +23,7 @@ RUN dnf --setopt=tsflags=nodocs -y install \
 	php-mbstring \
 	git \
 	python3-pip \
+	mysql \
 	&& dnf clean all
 
 RUN python3 -m pip install --upgrade pip \
