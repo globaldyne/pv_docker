@@ -4,6 +4,7 @@ WEBDIR="/var/www/html"
 
 if [ ! -d "/config" ]; then
 	mkdir -p /config
+	cp ${WEBDIR}/inc/* /config/
 fi
 
 touch /config/.DOCKER
