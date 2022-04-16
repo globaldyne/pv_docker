@@ -19,7 +19,7 @@ RUN dnf --setopt=tsflags=nodocs -y install \
 	php \
 	php-cli \
 	php-xml \
-	php-mysql \
+	php-mysqlnd \
 	php-gd \
 	mariadb-server \
 	php-mbstring \
