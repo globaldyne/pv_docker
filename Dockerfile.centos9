@@ -56,6 +56,7 @@ ADD https://api.github.com/repos/globaldyne/parfumvault/git/refs/heads/${git_rep
 RUN git clone -b ${git_repo} https://github.com/globaldyne/parfumvault.git /var/www/html
 
 ADD start.sh /start.sh
+ADD reset_pass.sh /usr/bin/reset_pass.sh
 ADD mysql-first-time.sql /tmp/mysql-first-time.sql
 
 EXPOSE 80
