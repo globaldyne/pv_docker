@@ -2,7 +2,7 @@
 #
 #
 # Reset admin pass
-# Script Version: v1.2
+# Script Version: v1.3
 # Author: John Belekios <john@globaldyne.co.uk>
 #
 #
@@ -18,6 +18,7 @@ else
         mysql -h localhost -upvault -ppvault pvault -e \
                 "UPDATE users SET password = PASSWORD('$PASS') WHERE id = '1';"
 fi
-
+USER=$(mysql -h localhost -upvault -ppvault pvault -e  "SELECT email FROM users WHERE id = '1';"|grep -v email)
 clear
-echo New Password is: $PASS
+echo Username: $USER
+echo Password: $PASS
