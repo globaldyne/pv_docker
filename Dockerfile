@@ -8,6 +8,8 @@ FROM --platform=linux/x86_64 quay.io/centos/centos:stream8
 ##LABELS
 
 ARG git_repo=master
+ARG uid=100001
+ArG gid=100001
 
 RUN dnf -y install epel-release
 RUN dnf -y install https://rpms.remirepo.net/enterprise/remi-release-8.rpm
@@ -44,11 +46,11 @@ RUN sed -i \
 ENV LANG en_GB.UTF-8
 
 ADD https://api.github.com/repos/globaldyne/parfumvault/git/refs/heads/${git_repo} version.json
-RUN git clone -b ${git_repo} https://github.com/globaldyne/parfumvault.git /var/www/html
-
+RUN git clone -b ${git_repo} https://github.com/globaldyne/parfumvault.git /html
+RUN chown -R ${uid}.${gid} /html
 ADD start.sh /start.sh
 
-USER 10001
+USER ${uid}
 EXPOSE 8000
-VOLUME ["/var/www/html/uploads", "/config"]
+VOLUME ["/html/uploads", "/config"]
 CMD ["/bin/bash", "/start.sh"]
