@@ -9,6 +9,10 @@ fi
 
 touch /config/.DOCKER
 
+if [ -f "/config/config.php" ]; then
+	ln -s /config/config.php ${WEBDIR}/inc/config.php
+fi
+
 
 echo "----------------------------------"
 echo "READY - Perfumer's Vault Ver $(cat /html/VERSION.md)"

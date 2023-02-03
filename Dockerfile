@@ -47,8 +47,11 @@ ENV LANG en_GB.UTF-8
 
 ADD https://api.github.com/repos/globaldyne/parfumvault/git/refs/heads/${git_repo} version.json
 RUN git clone -b ${git_repo} https://github.com/globaldyne/parfumvault.git /html
+RUN mkdir /html/tmp
 RUN chown -R ${uid}.${gid} /html
 ADD start.sh /start.sh
+
+WORKDIR /html
 
 USER ${uid}
 EXPOSE 8000
