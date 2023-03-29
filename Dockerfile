@@ -11,12 +11,10 @@ ARG git_repo=master
 ARG uid=100001
 ArG gid=100001
 
-RUN dnf -y install epel-release
-RUN dnf -y install https://rpms.remirepo.net/enterprise/remi-release-8.rpm
+RUN dnf install -y epel-release
+RUN dnf -y update 
+RUN dnf -y module enable php:7.4 
 
-RUN  dnf -y update 
-
-RUN dnf -y module enable php:remi-7.4 
 RUN dnf --setopt=tsflags=nodocs -y install \
 	php \
 	php-cli \
