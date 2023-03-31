@@ -3,7 +3,7 @@
 # JB's Vault
 # 
 # =============================================================================
-FROM quay.io/centos/centos:stream8
+FROM quay.io/centos/centos:stream9
 
 LABEL co.uk.globaldyne.component="perfumers-vault-container"  description="Perfumers Vault container image"  summary="Perfumers Vault container image Version v6.0-okd"  version="v6.0-okd"  io.k8s.description="Init Container for JBs Perfumers Vault v6.0-okd"  io.k8s.display-name="Perfumers Vault v6.0-okd Init Container"  io.openshift.tags="pvault,jb,perfumer,vault,jbpvault,v6.0-okd"  name="globaldyne/pvault"  maintainer="John Belekios"
 
@@ -13,7 +13,7 @@ ArG gid=100001
 
 RUN dnf install -y epel-release
 RUN dnf -y update 
-RUN dnf -y module enable php:7.4 
+#RUN dnf -y module enable php:7.4 
 
 
 RUN dnf --setopt=tsflags=nodocs -y install \
