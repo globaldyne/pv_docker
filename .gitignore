@@ -1,4 +1,5 @@
 Dockerfile.centos8-e
 build.sh
 release.sh
+okd_release.sh
 .DS_Store
