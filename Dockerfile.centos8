@@ -52,6 +52,7 @@ RUN git clone -b ${git_repo} https://github.com/globaldyne/parfumvault.git /html
 RUN mkdir /html/tmp
 RUN chown -R ${uid}.${gid} /html
 ADD start.sh /start.sh
+ADD pvdb.sh /usr/bin/pvdb.sh
 
 WORKDIR /html
 
