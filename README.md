@@ -1,7 +1,7 @@
 To build the image:
 
-	docker build -t jbvault .	
+	docker build -t pvault .	
 
 or to build specific branch:
 
-	docker build --build-arg git_repo=v2.8 -t jbvault:v2.8 .
+	docker build --build-arg git_repo=v6.1 -t pvault:v6.1 .
