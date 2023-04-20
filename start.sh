@@ -44,4 +44,4 @@ echo "Starting web server"
 echo "----------------------------------"
 echo "READY - Perfumer's Vault Ver $(cat /var/www/html/VERSION.md)"
 touch /var/log/php-fpm/www-error.log
-tail -f /var/log/php-fpm/www-error.log
+tail -f /var/log/php-fpm/www-error.log /var/log/httpd/error_log
