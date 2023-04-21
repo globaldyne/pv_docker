@@ -7,7 +7,7 @@ if [ ! -d "/config" ]; then
 	cp ${WEBDIR}/inc/* /config/
 fi
 
-touch /config/.DOCKER
+touch /config/.CLOUD
 
 if [ -f "/config/config.php" ]; then
 	ln -s /config/config.php ${WEBDIR}/inc/config.php
