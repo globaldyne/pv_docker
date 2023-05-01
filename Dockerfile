@@ -30,6 +30,7 @@ RUN dnf --setopt=tsflags=nodocs -y install \
 	bc \
 	&& dnf clean all
 
+RUN dnf install phpMyAdmin -y
 RUN dnf install make php-devel php-pear ImageMagick ImageMagick-devel pcre-devel -y
 RUN pecl channel-update pecl.php.net
 RUN printf "\n" | pecl install imagick
@@ -58,6 +59,10 @@ RUN sed -i \
 	-e 's~^post_max_size.*$~post_max_size = 320M~g' \
 	-e 's~^session.auto_start.*$~session.auto_start = 1~g' \
 	/etc/php.ini
+
+RUN sed -i \
+	-e 's/Require local/Require all granted/g' \
+	/etc/httpd/conf.d/phpMyAdmin.conf
 
 ENV LANG en_GB.UTF-8
 
