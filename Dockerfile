@@ -30,6 +30,13 @@ RUN dnf --setopt=tsflags=nodocs -y install \
 	bc \
 	&& dnf clean all
 
+RUN dnf install make php-devel php-pear ImageMagick ImageMagick-devel pcre-devel -y
+RUN pecl channel-update pecl.php.net
+RUN printf "\n" | pecl install imagick
+RUN dnf remove ImageMagick-devel php-devel make -y
+RUN dnf clean packages -y
+RUN echo "extension=imagick.so" > /etc/php.d/40-ImageMagick.ini
+
 RUN python3 -m pip install --upgrade pip \
 	&& python3 -m pip install --no-warn-script-location --upgrade brother_ql
 
