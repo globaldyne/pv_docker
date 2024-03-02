@@ -19,7 +19,6 @@ RUN dnf --setopt=tsflags=nodocs -y install \
 	php-gd \
 	php-mbstring \
 	php-fpm \
-	phpMyAdmin \
 	python3-pip \
 	procps \
 	openssl \
@@ -44,11 +43,7 @@ RUN sed -i \
 ENV LANG en_GB.UTF-8
 ADD html /html
 
-RUN sed -i "s/ 'localhost'/ getenv(\"DB_HOST\")/g" /etc/phpMyAdmin/config.inc.php
-RUN echo "\$cfg['TempDir'] = '/tmp/';" >> /etc/phpMyAdmin/config.inc.php
-RUN chown -R root.root /etc/phpMyAdmin/
 
-RUN ln -s /usr/share/phpMyAdmin/ /html/phpMyAdmin
 ADD html/scripts/php-fpm/www.conf /etc/php-fpm.d/www.conf
 ADD html/scripts/php-fpm/php-fpm.conf /etc/php-fpm.conf
 ADD html/scripts/entrypoint.sh /usr/bin/entrypoint.sh
