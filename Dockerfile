@@ -10,7 +10,7 @@ LABEL co.uk.globaldyne.component="perfumers-vault-container"  description="Perfu
 ARG uid=100001
 ARG gid=100001
 
-RUN microdnf install -y epel-release
+#RUN microdnf install -y epel-release
 RUN microdnf -y update
 
 RUN microdnf -y module enable nginx:1.24
@@ -22,17 +22,10 @@ RUN microdnf --setopt=tsflags=nodocs -y install \
 	php-gd \
 	php-mbstring \
 	php-fpm \
-	python3-pip \
-	procps \
 	openssl \
-	bc \
 	mysql \
-	nginx \
-	ncurses
+	nginx 
 
-
-RUN python3 -m pip install --upgrade pip \
-        && python3 -m pip install --no-warn-script-location --upgrade brother_ql
 
 RUN microdnf clean all && rm -rf /var/cache/yum/*
 
